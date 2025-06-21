@@ -1,4 +1,6 @@
-export type Gardian = {
+import { Model, Types } from 'mongoose';
+
+export type TGuardian = {
   fatherName: string;
   fatherOccupation: string;
   fatherContactNo: string;
@@ -7,32 +9,50 @@ export type Gardian = {
   motherContactNo: string;
 };
 
-export type UserName = {
-  fristName: string;
+export type TUserName = {
+  firstName: string;
   middleName: string;
   lastName: string;
 };
 
-export type LocalGuardian = {
+export type TLocalGuardian = {
   name: string;
   occupation: string;
   address: string;
   contactNo: string;
 };
 
-export type Student = {
+export type TStudent = {
   id: string;
-  name: UserName;
+  user: Types.ObjectId;
+  password: string;
+  name: TUserName;
   gender: 'male' | 'female';
   dateOfBirth: string;
   email: string;
   contactNo: string;
   emergencyContactNo: string;
-  bloogGroup?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
+  bloodGroup?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
   presentAddress: string;
   permanentAddress: string;
-  gardian: Gardian;
-  localGuardian: LocalGuardian;
+  guardian: TGuardian;
+  localGuardian: TLocalGuardian;
   profileImag?: string;
-  isActive: 'active' | 'blocked';
+  isDeleted: boolean;
 };
+
+// For creating static
+export interface StudentModel extends Model<TStudent> {
+  isUserExist(id: string): Promise<TStudent | null>;
+}
+
+// For creating instance
+// export type TStudentMethods = {
+//   isUserExists(id: string): Promise<TStudent | null>;
+// };
+
+// export type TStudentModel = Model<
+//   TStudent,
+//   Record<string, never>,
+//   TStudentMethods
+// >;

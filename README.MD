@@ -1,6 +1,8 @@
 # 08 Mastering the core concepts of mongoose
 
 - [Project Setup](#)
+- [Document Middleware](#)
+- [Query Middleware](#)
 
 ## Project Setup
 
