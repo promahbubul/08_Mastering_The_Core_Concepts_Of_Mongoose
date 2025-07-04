@@ -68,24 +68,27 @@ const guardianSchema = new Schema<TGuardian>({
   },
 });
 
-const localGuardianSchema = new Schema<TLocalGuardian>({
-  name: {
-    type: String,
-    required: [true, 'Local guardian name is required'],
+const localGuardianSchema = new Schema<TLocalGuardian>(
+  {
+    name: {
+      type: String,
+      required: [true, 'Local guardian name is required'],
+    },
+    occupation: {
+      type: String,
+      required: [true, 'Local guardian occupation is required'],
+    },
+    address: {
+      type: String,
+      required: [true, 'Local guardian address is required'],
+    },
+    contactNo: {
+      type: String,
+      required: [true, 'Local guardian contact number is required'],
+    },
   },
-  occupation: {
-    type: String,
-    required: [true, 'Local guardian occupation is required'],
-  },
-  address: {
-    type: String,
-    required: [true, 'Local guardian address is required'],
-  },
-  contactNo: {
-    type: String,
-    required: [true, 'Local guardian contact number is required'],
-  },
-});
+  { timestamps: true },
+);
 
 const studentSchema = new Schema<TStudent, StudentModel>(
   {
@@ -159,15 +162,21 @@ const studentSchema = new Schema<TStudent, StudentModel>(
       type: String,
       required: [true, 'Profile image is required'],
     },
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
     academicSemester: {
       type: Schema.Types.ObjectId,
       ref: 'AcademicSemester',
     },
+    academicDepartment: {
+      type: Schema.Types.ObjectId,
+      ref: 'AcademicDepartment',
+    },
   },
   {
-    toJSON: {
-      virtuals: true,
-    },
+    timestamps: true,
   },
 );
 
