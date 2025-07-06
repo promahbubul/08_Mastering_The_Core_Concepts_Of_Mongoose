@@ -17,7 +17,8 @@ app.use(cors());
 
 // routing
 app.get('/', (req: Request, res: Response) => {
-  res.send({ success: true, message: 'Hello world' });
+  Promise.reject();
+  // res.send({ success: true, message: 'Hello world' });
 });
 
 // application route
