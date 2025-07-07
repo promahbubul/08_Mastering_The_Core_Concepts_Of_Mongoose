@@ -19,13 +19,6 @@ const generateStudentId = async (payload: TAcademicSemester) => {
   const currentSemesterYear = payload.year;
 
   // if(lastStudentId)
-  console.log({
-    lastStudentId,
-    lastStudentIdSemesterCode,
-    lastStudentIdYear,
-    currentSemesterCode,
-    currentSemesterYear,
-  });
   if (
     lastStudentId &&
     lastStudentIdSemesterCode === currentSemesterCode &&
